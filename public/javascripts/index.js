@@ -23,7 +23,7 @@ function init(){
         getThemTodos();
     }  
     else if(!loggedInState){
-        container.innerHTML = "<a href='http://localhost:3000/login.html'>Login</a><br><a href='http://localhost:3000/register.html'>Register</a>"
+        container.innerHTML = "<a href='/login.html'>Login</a><br><a href='/register.html'>Register</a>"
     }
 }
 
@@ -69,11 +69,12 @@ function getThemTodos(){
                 console.log(data.message);
             }
             else if(data.list){
-                //console.log(data.list[0].items);
-                for(let i = 0; i < data.list[0].items.length; i++){
-                    let li = document.createElement('li');
-                    li.innerText = data.list[0].items[i];
-                    document.getElementById("todo-list").appendChild(li);
+                if(data.list.length === 1){
+                    for(let i = 0; i < data.list[0].items.length; i++){
+                        let li = document.createElement('li');
+                        li.innerText = data.list[0].items[i];
+                        document.getElementById("todo-list").appendChild(li);
+                    }
                 }
             }
         })
